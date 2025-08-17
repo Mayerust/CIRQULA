@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --background-secondary: 240 5% 96%;
+    --background-card: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 200 100% 50%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 200 100% 60%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 280 100% 70%;
+    --accent-foreground: 222.2 84% 4.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 200 100% 50%;
+
+    --radius: 0.75rem;
+
+    --quantum-primary: 200 100% 50%;
+    --quantum-secondary: 280 100% 70%;
+    --quantum-tertiary: 320 100% 60%;
+    --quantum-glow: 200 100% 60%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --background-secondary: 217.2 32.6% 17.5%;
+    --background-card: 224 71.4% 4.1%;
+    --foreground: 210 40% 98%;
+
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 200 100% 50%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 200 100% 60%;
+
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    --accent: 280 100% 70%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 200 100% 50%;
+
+    --quantum-primary: 200 100% 50%;
+    --quantum-secondary: 280 100% 70%;
+    --quantum-tertiary: 320 100% 60%;
+    --quantum-glow: 200 100% 60%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    @apply bg-background text-foreground;
+  }
+}
+
+.quantum-btn {
+  @apply bg-gradient-to-r from-quantum-primary to-quantum-secondary text-white font-semibold px-6 py-3 rounded-lg;
+  @apply hover:shadow-lg hover:scale-105 transition-all duration-300;
+  @apply active:scale-95 relative overflow-hidden;
+}
+
+.quantum-btn::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+  @apply transform -translate-x-full transition-transform duration-700;
+}
+
+.quantum-btn:hover::before {
+  @apply translate-x-full;
+}
+
+.quantum-outline {
+  @apply border-2 border-quantum-primary text-quantum-primary bg-transparent;
+  @apply hover:bg-quantum-primary hover:text-white transition-all duration-300;
+  @apply hover:shadow-[0_0_20px_hsl(var(--quantum-glow)/.5)];
+}
+
+.status-optimal {
+  @apply bg-quantum-primary/10 text-quantum-primary border border-quantum-primary/20;
+}
+
+.status-processing {
+  @apply bg-quantum-secondary/10 text-quantum-secondary border border-quantum-secondary/20;
+}
+
+.status-error {
+  @apply bg-destructive/10 text-destructive border border-destructive/20;
+}
+
+.quantum-badge {
+  @apply bg-gradient-to-r from-quantum-primary to-quantum-secondary text-white;
+  @apply shadow-[0_0_20px_hsl(var(--quantum-glow)/.3)] animate-pulse;
+}
+
+.quantum-card {
+  @apply bg-background-card/80 backdrop-blur-md border border-border/50;
+  @apply rounded-xl p-6 transition-all duration-300;
+  @apply hover:shadow-[0_8px_32px_hsl(var(--quantum-primary)/.15)] hover:bg-background-card/90;
+  @apply relative overflow-hidden;
+}
+
+.quantum-card::before {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-quantum-primary to-transparent;
+  @apply animate-shimmer;
+}
+
+.quantum-meter {
+  @apply bg-gradient-to-br from-quantum-primary via-quantum-secondary to-quantum-tertiary;
+  @apply p-1 animate-pulse;
+}
+
+.quantum-progress [data-progress] {
+  @apply bg-gradient-to-r from-quantum-primary to-quantum-secondary transition-all duration-500;
+}
+
+.quantum-particle {
+  @apply animate-float;
+}
+
+.nav-quantum {
+  @apply text-muted-foreground hover:text-quantum-primary transition-all duration-300;
+  @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5;
+  @apply after:bg-gradient-to-r after:from-quantum-primary after:to-quantum-secondary;
+  @apply after:transition-all after:duration-300 hover:after:w-full;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes matrix-rain {
+  0% { transform: translateY(-100vh); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.matrix-bg::before {
+  content: '';
+  @apply absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--quantum-primary)/.05)_0%,transparent_70%)];
+  animation: matrix-rain 3s linear infinite;
+}
